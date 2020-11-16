@@ -1,5 +1,5 @@
 # truseq.hg38
-illumina truseq panel run on better and free tools
+illumina truseq panel run on better controlled and free tools
 
 The presense of primer bases in illumina read sequences introduces wild type bias into variant calling within overlapping amplicons. This issue is addressed in Illumina built-in software. But in order to process sequences outside of that pipeline we need to reproduce that behaivour.
 
