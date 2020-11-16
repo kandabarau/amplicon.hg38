@@ -11,7 +11,7 @@ Then - [lift it over](https://github.com/dphansti/liftOverBedpe/blob/master/lift
 
 `python liftOverBedpe.py --lift ./liftOver --chain hg19ToHg38.over.chain.gz --i Manifest.hg19.bedpe --o Manifest.hg38.bedpe  --h F`
 
-And keep genomic targets (for variant calling) and their primers (for IGV) in separate bed*s*
+And keep genomic targets (for variant calling) and their primers (for IGV) in separate .bed*s*
 
 `awk -v s=1 'BEGIN {OFS = "\t"}; {print $1, $3+s, $5-s, $7}' Manifest.hg38.bedpe > Manifest.hg38.targets.bed`
 
