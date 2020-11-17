@@ -1,7 +1,9 @@
 # truseq.hg38
 illumina truseq panel run on better controlled and free tools
 
-Primer sequences in illumina reads introduces reference base bias into variant calling (within overlapping amplicons). This issue is addressed in Illumina built-in software. But in order to process sequences outside of that pipeline we need to reproduce that behaivour.
+Primer sequences in illumina reads introduces reference base bias into variant calling (within overlapping amplicons). This issue is addressed in Illumina built-in software. In order to process reads outside of truseq-aware tools we need to reproduce that behaivour.
+
+![primer regions imported and marked red in regions pannel](https://github.com/kandabarau/truseq.hg38/blob/main/img/igv.primer.softclip.JPG)
 
 First, we need to [re-format](https://github.com/tommyau/bamclipper/blob/master/scripts/manifest2bedpe.pl) truseq manifest file to bedpe 
 
