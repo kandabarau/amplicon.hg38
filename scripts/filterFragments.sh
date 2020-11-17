@@ -17,3 +17,6 @@ samtools view -H ${bm} > ${sm}.filter.sam
 awk 'FNR==NR{a[$1,$2,$3,$4]; next} ($3,$4,$8,$9) in a' ${sm}.trg.fragments ${sm}.uniq.aln >> ${sm}.filter.sam
 samtools view -hb ${sm}.filter.sam | samtools sort -o ${sm}.filter.bam -
 samtools index ${sm}.filter.bam
+
+rm ${sm}.uniq.aln
+rm ${sm}.filter.sam
