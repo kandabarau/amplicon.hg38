@@ -15,7 +15,7 @@ Then - [lift it over](https://github.com/dphansti/liftOverBedpe/blob/master/lift
 
 And keep genomic targets (for variant calling) and their primers (for IGV) in separate .bed*s*
 
-`awk -v s=1 'BEGIN {OFS = "\t"}; {print $1, $3+s, $5-s, $7}' Manifest.hg38.bedpe > Manifest.hg38.targets.bed`
+`awk 'BEGIN {OFS = "\t"}; {print $1, $3 + 1, $5 - 1, $7}' Manifest.hg38.bedpe > Manifest.hg38.targets.bed`
 
 `awk 'BEGIN {OFS = "\t"}; {print $1, $2, $3, $7}; {print $1, $5, $6, $7}' Manifest.hg38.bedpe > Manifest.hg38.primers.bed`
 
