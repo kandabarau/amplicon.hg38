@@ -15,9 +15,9 @@ Then - [lift it over](https://github.com/dphansti/liftOverBedpe/blob/master/lift
 
 And keep genomic targets (for variant calling) and their primers (for IGV) in separate .bed*s*
 
-`awk 'BEGIN {OFS = "\t"}; {print $1, $3 + 1, $5 - 1, $7}' Manifest.hg38.bedpe > Manifest.hg38.targets.bed`
+`awk 'BEGIN {OFS = "\t"}; {print $1, $3 + 1, $5 - 1, $7}' Manifest.hg38.bedpe | bedtools sort > Manifest.hg38.targets.bed`
 
-`awk 'BEGIN {OFS = "\t"}; {print $1, $2, $3, $7}; {print $1, $5, $6, $7}' Manifest.hg38.bedpe > Manifest.hg38.primers.bed`
+`awk 'BEGIN {OFS = "\t"}; {print $1, $2, $3, $7}; {print $1, $5, $6, $7}' Manifest.hg38.bedpe | bedtools sort > Manifest.hg38.primers.bed`
 
 Then we have everything ready to [softclip](https://github.com/tommyau/bamclipper/blob/master/bamclipper.sh) primer bases from a sorted hg38 BAM
 
