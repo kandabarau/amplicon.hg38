@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# map and remove chimeric reads
+# map to the reference of choice
 
 f1=$1
 f2=$2
