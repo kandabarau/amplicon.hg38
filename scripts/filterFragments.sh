@@ -16,8 +16,8 @@ mkdir -p out/
 
 samtools view ${bm} | grep -v -e 'XA:Z:' -e 'SA:Z:' > ${sm}.uniq.aln
 cut -f3,4,8,9 ${sm}.uniq.aln | sort | uniq -c | sort -nr | grep -v '*' | sed -e 's/ chr/\tchr/g' -e 's/ //g' | awk -v dp=${dp} '$1 >= dp' > fragments/${sm}.seq.fragments
-awk 'FNR==NR{a[$1,$2]; next} ($2,$3) in a' ${fr} fragments/${sm}.seq.fragments | cut -f2,3,4,5 > fragments/${sm}.trg.fragments
-awk 'FNR==NR{a[$1,$2]; next} ($2,$4) in a' ${fr} fragments/${sm}.seq.fragments | cut -f2,3,4,5 >> fragments/${sm}.trg.fragments
+awk 'FNR==NR{a[$1,$2,$5]; next} ($2,$3,$5) in a' ${fr} fragments/${sm}.seq.fragments | cut -f2,3,4,5 > fragments/${sm}.trg.fragments
+awk 'FNR==NR{a[$1,$2,$5*=-1]; next} ($2,$4,$5) in a' ${fr} fragments/${sm}.seq.fragments | cut -f2,3,4,5 >> fragments/${sm}.trg.fragments
 
 samtools view -H ${bm} > ${sm}.filter.sam
 awk 'FNR==NR{a[$1,$2,$3,$4]; next} ($3,$4,$8,$9) in a' fragments/${sm}.trg.fragments ${sm}.uniq.aln >> ${sm}.filter.sam
