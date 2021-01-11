@@ -23,7 +23,7 @@ join -t $'\t' -v 1 -1 1 -2 1 readIDs/${sm}.targeted.reads readIDs/${sm}.clipped.
 
 mkdir -p ftd/
 
-samtools view ${primerclipped}} | sort -t $'\t' -k1,1 > ${sm}.tmp.sam
+samtools view ${primerclipped} | sort -t $'\t' -k1,1 > ${sm}.tmp.sam
 
 samtools view -H ${primerclipped} > ${sm}.ftd.sam
 join -t $'\t' -1 1 -2 1 ${sm}.tmp.sam readIDs/${sm}.good.reads >> ${sm}.ftd.sam
