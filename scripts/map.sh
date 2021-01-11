@@ -14,7 +14,7 @@ ln=$(zcat ${f2} | head -1 | cut -d':' -f4)
 
 if [ ! -e "${sm}_bwamem.bam" ]
 then
-bwa mem -K 100000000 -v 3 -t 16 -Y -R "@RG\tID:${fc}.${ln}\tSM:${sm}\tLB:${sm}\tPL:illumina\tPU:${fc}.${lb}.${ln}\tCN:${ct}" ${REF} ${f1} ${f2} > ${sm}_bwamem.bam
+bwa mem -v 1 -t 16 -Y -R "@RG\tID:${fc}.${ln}\tSM:${sm}\tLB:${sm}\tPL:illumina\tPU:${fc}.${lb}.${ln}\tCN:${ct}" ${REF} ${f1} ${f2} > ${sm}_bwamem.bam
 fi
 
 samtools sort -o ${sm}.srt.bam ${sm}_bwamem.bam
