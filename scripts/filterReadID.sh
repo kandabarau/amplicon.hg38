@@ -34,7 +34,7 @@ samtools index ${bmdir}ftd/${sm}.ftd.bam ${bmdir}ftd/${sm}.ftd.bam.bai
 mkdir -p ${bmdir}out/
 
 samtools view -H ${bmdir}${primerclipped} > ${bmdir}${sm}.out.sam
-join -t $'\t' -v 1 -1 1 -2 1 ${sm}.tmp.sam ${bmdir}readIDs/${sm}.good.reads >> ${bmdir}${sm}.out.sam
+join -t $'\t' -v 1 -1 1 -2 1 ${bmdir}${sm}.tmp.sam ${bmdir}readIDs/${sm}.good.reads >> ${bmdir}${sm}.out.sam
 samtools view -bS ${bmdir}${sm}.out.sam | samtools sort - > ${bmdir}out/${sm}.out.bam
 samtools index ${bmdir}out/${sm}.out.bam ${bmdir}out/${sm}.out.bam.bai
 
