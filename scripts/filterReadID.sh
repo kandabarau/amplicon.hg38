@@ -5,17 +5,17 @@
 bmdir=$1 # dif witj alignemnts
 bwamemed=$2 # raw bwa mem result with softclips
 primerclipped=$3 # sorted bam with amplicon primers clipped
-fragmens=$4 # amplicon targets bed
+fragments=$4 # amplicon targets bed
 
 mkdir -p ${bmdir}readIDs/
 
 sm=$(samtools view -H ${bmdir}${bwamemed} | grep '^@RG' | sed 's/.*SM://' | cut -f1 | uniq)
 
-# we do not expect to have in our alignemnts
+# we do not expect softclips in our alignemnts
 
 samtools view ${bmdir}${bwamemed} | awk '$6 ~ /H|S/{print $1}' | sort -t $'\t' -k1,1 -u > ${bmdir}readIDs/${sm}.clipped.reads
 
-# let's see if reads in pairs both start at target regein's edges
+# let's see if reads in pairs both start at target region's edges
 
 samtools view ${bmdir}${primerclipped} | cut -f1,3,4,9 | awk 'FNR==NR{a[$1,$2,$5]; next} ($2,$3,$4) in a' ${fragments} - | cut -f1 | sort -t $'\t' -k1,1 -u > ${bmdir}readIDs/${sm}.targeted.reads
 join -t $'\t' -v 1 -1 1 -2 1 ${bmdir}readIDs/${sm}.targeted.reads ${bmdir}readIDs/${sm}.clipped.reads > ${bmdir}readIDs/${sm}.good.reads
