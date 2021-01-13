@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 # map to the reference of choice
 
 f1=$1 # read 1
